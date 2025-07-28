@@ -1,5 +1,6 @@
 package ma.enset.gestionconsultations.controllers;
 
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,7 +16,15 @@ import ma.enset.gestionconsultations.entities.Patient;
 public class PatientController {
 
     @FXML
-    private TextField nomField, prenomField, telField, emailField, addressField;
+    private SimpleObjectProperty<TextField> nomField = new SimpleObjectProperty<>(this, "nomField");
+    @FXML
+    private TextField prenomField;
+    @FXML
+    private TextField telField;
+    @FXML
+    private SimpleObjectProperty<TextField> emailField = new SimpleObjectProperty<>(this, "emailField");
+    @FXML
+    private SimpleObjectProperty<TextField> addressField = new SimpleObjectProperty<>(this, "addressField");
     @FXML
     private DatePicker dateOfBirthField;
     @FXML
@@ -48,11 +57,11 @@ public class PatientController {
     @FXML
     private void onAjouterPatient() {
         // Get the entered values
-        String nom = nomField.getText();
+        String nom = nomField.get().getText();
         String prenom = prenomField.getText();
         String tel = telField.getText();
-        String email = emailField.getText();
-        String address = addressField.getText();
+        String email = emailField.get().getText();
+        String address = addressField.get().getText();
         String gender = genderComboBox.getValue();
         String dateOfBirth = dateOfBirthField.getValue() != null ? dateOfBirthField.getValue().toString() : "";
 
@@ -67,11 +76,11 @@ public class PatientController {
     }
 
     private void clearForm() {
-        nomField.clear();
+        nomField.get().clear();
         prenomField.clear();
         telField.clear();
-        emailField.clear();
-        addressField.clear();
+        emailField.get().clear();
+        addressField.get().clear();
         genderComboBox.getSelectionModel().clearSelection();
         dateOfBirthField.setValue(null);
     }
