@@ -59,4 +59,4 @@ Ce projet est une application de bureau développée en **JavaFX (Java 1.8/17)**
 
 1. Cloner le dépôt :
    ```bash
-   git clone https://github.com/votre-utilisateur/GestionConsultations.git
+   git clone https://github.com/hajargithub/GestionConsultations.git
