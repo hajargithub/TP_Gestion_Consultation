@@ -27,7 +27,7 @@ Ce projet est une application de bureau développée en **JavaFX (Java 1.8/17)**
 ![Ajouter Consultation](images/Add_consultation.PNG)
 
 ### 📄 Liste des consultations
-![Liste Consultations](images/List_consultations.PNG)
+![Liste Consultations](images/List_consulations.PNG)
 
 ### 🏠 Page principale
 ![Page Principale](images/home_page.PNG)
