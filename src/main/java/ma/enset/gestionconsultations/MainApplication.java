@@ -2,23 +2,24 @@ package ma.enset.gestionconsultations;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import org.kordamp.bootstrapfx.BootstrapFX;
 
 public class MainApplication extends Application {
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root= FXMLLoader.load(getClass().getResource("views/PatientView.fxml"));
-        Scene scene=new Scene(root,650,600);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ma/enset/gestionconsultations/views/main-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 600, 530);
+        scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
+
+        stage.setTitle("Gestion des Consultations");
         stage.setScene(scene);
-        stage.setTitle("Gestion des consultations ");
         stage.show();
+    }
+
+    public static void main(String[] args) {
+        launch();
     }
 }

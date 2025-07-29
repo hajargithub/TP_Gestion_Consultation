@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Patient {
 
 
-        private long id;
+        private long id_patient;
 
         private String firstName;
 
@@ -35,12 +35,12 @@ public class Patient {
         this.address = address;
     }
 
-    public Long getId() {
-            return id;
+    public Long getId_patient() {
+            return id_patient;
         }
 
-        public void setId(long  id) {
-            this.id = id;
+        public void setId_patient(long  id) {
+            this.id_patient = id;
         }
 
         public String getFirstName() {
@@ -102,7 +102,7 @@ public class Patient {
         @Override
         public String toString() {
             return "Patient{" +
-                    "id=" + id +
+                    "id=" + id_patient +
                     ", firstName='" + firstName + '\'' +
                     ", lastName='" + lastName + '\'' +
                     ", dateOfBirth=" + dateOfBirth +

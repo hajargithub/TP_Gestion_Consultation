@@ -13,11 +13,11 @@ public class PatientDaoImpl implements IPatientDao {
         Connection conn = DbConnexionSingleton.getConnection();
         List<Patient> patients = new ArrayList<>();
         try {
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM patients;");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM patient;");
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 Patient p = new Patient();
-                p.setId(rs.getLong("id"));
+                p.setId_patient(rs.getLong("id_patient"));
                 p.setFirstName(rs.getString("first_name"));
                 p.setLastName(rs.getString("last_name"));
                 p.setDateOfBirth(rs.getDate("date_of_birth"));
@@ -38,12 +38,12 @@ public class PatientDaoImpl implements IPatientDao {
         Connection conn = DbConnexionSingleton.getConnection();
         Patient p = null;
         try {
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM patients WHERE id = ?;");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM patient WHERE id_patient = ?;");
             pstmt.setLong(1, id);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
                 p = new Patient();
-                p.setId(rs.getLong("id"));
+                p.setId_patient(rs.getLong("id_patient"));
                 p.setFirstName(rs.getString("first_name"));
                 p.setLastName(rs.getString("last_name"));
                 p.setDateOfBirth(rs.getDate("date_of_birth"));
@@ -63,7 +63,7 @@ public class PatientDaoImpl implements IPatientDao {
         Connection conn = DbConnexionSingleton.getConnection();
         try {
             PreparedStatement pstmt = conn.prepareStatement(
-                    "INSERT INTO patients (first_name, last_name, date_of_birth, gender, phone_number, email, address) VALUES (?, ?, ?, ?, ?, ?, ?)"
+                    "INSERT INTO patient (first_name, last_name, date_of_birth, gender, phone_number, email, address) VALUES (?, ?, ?, ?, ?, ?, ?)"
             );
             pstmt.setString(1, patient.getFirstName());
             pstmt.setString(2, patient.getLastName());
@@ -83,7 +83,7 @@ public class PatientDaoImpl implements IPatientDao {
     public void deleteById(Long id) {
         Connection conn = DbConnexionSingleton.getConnection();
         try {
-            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM patients WHERE id = ?;");
+            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM patient WHERE id_patient = ?;");
             pstmt.setLong(1, id);
             pstmt.executeUpdate();
             System.out.println("Patient supprimé avec succès !");
@@ -97,7 +97,7 @@ public class PatientDaoImpl implements IPatientDao {
         Connection conn = DbConnexionSingleton.getConnection();
         try {
             PreparedStatement pstmt = conn.prepareStatement(
-                    "UPDATE patients SET first_name = ?, last_name = ?, date_of_birth = ?, gender = ?, phone_number = ?, email = ?, address = ? WHERE id = ?;"
+                    "UPDATE patient SET first_name = ?, last_name = ?, date_of_birth = ?, gender = ?, phone_number = ?, email = ?, address = ? WHERE id_patient = ?;"
             );
             pstmt.setString(1, patient.getFirstName());
             pstmt.setString(2, patient.getLastName());
@@ -106,7 +106,7 @@ public class PatientDaoImpl implements IPatientDao {
             pstmt.setString(5, patient.getPhoneNumber());
             pstmt.setString(6, patient.getEmail());
             pstmt.setString(7, patient.getAddress());
-            pstmt.setLong(8, patient.getId());
+            pstmt.setLong(8, patient.getId_patient());
             pstmt.executeUpdate();
             System.out.println("Patient mis à jour avec succès !");
         } catch (SQLException e) {
